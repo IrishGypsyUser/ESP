@@ -282,8 +282,8 @@ local espLibrary = {
             Thickness = 1,
             Filled = true
         }),
-        line = create("Line", {Thickness = 2}),
-        lineoutline = create("Line", {Thickness = 2})
+        line = create("Line", {Thickness = 1}),
+        lineoutline = create("Line", {Thickness = 1.5})
     };
   
     espLibrary.espCache[player] = objects;
@@ -539,7 +539,7 @@ local espLibrary = {
                     origin == "Bottom" and vector2New(viewportSize.X * 0.5, viewportSize.Y);
                 objects.line.To = torsoPosition;
                 objects.lineoutline.Visible = show and self.options.tracers;
-                objects.lineoutline.Color = color or self.options.tracerColor;
+                objects.lineoutline.Color = Color3.new(0,0,0)
                 objects.lineoutline.Transparency = self.options.tracerTransparency;
                 objects.lineoutline.From =
                     origin == "Mouse" and userInputService:GetMouseLocation() or
