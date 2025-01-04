@@ -282,8 +282,8 @@ local espLibrary = {
             Thickness = 1,
             Filled = true
         }),
-        line = create("Line", {Thickness = 1}),
-        lineoutline = create("Line", {Thickness = 1.5})
+        lineoutline = create("Line", {Thickness = 3}),
+        line = create("Line", {Thickness = 1})
     };
   
     espLibrary.espCache[player] = objects;
