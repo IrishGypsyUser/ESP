@@ -532,8 +532,6 @@ local espLibrary = {
                 objects.line.Visible = show and self.options.tracers;
                 objects.line.Color = color or self.options.tracerColor;
                 objects.line.Transparency = self.options.tracerTransparency;
-                objects.line.Outline = true
-                objects.line.OutlineColor = Color3.new(0,0,0)
                 objects.line.From =
                     origin == "Mouse" and userInputService:GetMouseLocation() or
                     origin == "Top" and vector2New(viewportSize.X * 0.5, 0) or
