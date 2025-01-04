@@ -497,7 +497,7 @@ local espLibrary = {
                 objects.bottom.Font = self.options.font;
                 objects.bottom.Size = self.options.fontSize;
                 objects.bottom.Transparency = self.options.distanceTransparency;
-                objects.bottom.Color = color or self.options.nameColor;
+                objects.bottom.Color = color or self.options.distanceColor;
                 objects.bottom.Text = tostring(round(distance)) .. self.options.distanceSuffix;
                 objects.bottom.Position = round(position + vector2New(size.X * 0.5, size.Y + 1));
   
