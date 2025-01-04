@@ -282,7 +282,8 @@ local espLibrary = {
             Thickness = 1,
             Filled = true
         }),
-        line = create("Line")
+        line = create("Line", {Thickness = 2}),
+        lineoutline = create("Line", {Thickness = 2})
     };
   
     espLibrary.espCache[player] = objects;
@@ -497,7 +498,7 @@ local espLibrary = {
                 objects.bottom.Font = self.options.font;
                 objects.bottom.Size = self.options.fontSize;
                 objects.bottom.Transparency = self.options.distanceTransparency;
-                objects.bottom.Color = color or self.options.distanceColor;
+                objects.bottom.Color = color or self.options.nameColor;
                 objects.bottom.Text = tostring(round(distance)) .. self.options.distanceSuffix;
                 objects.bottom.Position = round(position + vector2New(size.X * 0.5, size.Y + 1));
   
@@ -537,6 +538,15 @@ local espLibrary = {
                     origin == "Top" and vector2New(viewportSize.X * 0.5, 0) or
                     origin == "Bottom" and vector2New(viewportSize.X * 0.5, viewportSize.Y);
                 objects.line.To = torsoPosition;
+                objects.lineoutline.Visible = show and self.options.tracers;
+                objects.lineoutline.Color = color or self.options.tracerColor;
+                objects.lineoutline.Transparency = self.options.tracerTransparency;
+                objects.lineoutline.From =
+                    origin == "Mouse" and userInputService:GetMouseLocation() or
+                    origin == "Top" and vector2New(viewportSize.X * 0.5, 0) or
+                    origin == "Bottom" and vector2New(viewportSize.X * 0.5, viewportSize.Y);
+                    objects.lineoutline.To = torsoPosition;
+
             else
                 for _, object in next, objects do
                     object.Visible = false;
