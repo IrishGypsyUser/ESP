@@ -517,7 +517,7 @@ local espLibrary = {
                 objects.side.Text = health .. self.options.healthTextSuffix;
                 objects.side.Position = round(position + vector2New(size.X + 3, -3));
 
-                objects.tool.Visible = show and self.options.tool;
+                objects.tool.Visible = show and self.options.tool and tool ~= "None";
                 objects.tool.Font = self.options.font;
                 objects.tool.Size = self.options.fontSize;
                 objects.tool.Transparency = self.options.toolTransparency;
@@ -525,7 +525,7 @@ local espLibrary = {
                 objects.tool.Text = tostring(tool);
                 objects.tool.Position = round(position + vector2New(size.X * 0.5, size.Y + 1));
   
-                local Distance_Offset = self.options.tool and 13 or 2
+                local Distance_Offset = objects.tool.Visible and 13 or 2
 
                 objects.bottom.Visible = show and self.options.distance;
                 objects.bottom.Font = self.options.font;
