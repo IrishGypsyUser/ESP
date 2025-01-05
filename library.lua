@@ -516,14 +516,6 @@ local espLibrary = {
                 objects.side.Color = color or self.options.healthTextColor;
                 objects.side.Text = health .. self.options.healthTextSuffix;
                 objects.side.Position = round(position + vector2New(size.X + 3, -3));
-  
-                objects.bottom.Visible = show and self.options.distance;
-                objects.bottom.Font = self.options.font;
-                objects.bottom.Size = self.options.fontSize;
-                objects.bottom.Transparency = self.options.distanceTransparency;
-                objects.bottom.Color = color or self.options.distanceColor;
-                objects.bottom.Text = tostring(round(distance)) .. self.options.distanceSuffix;
-                objects.bottom.Position = round(position + vector2New(size.X * 0.5, size.Y + 1));
 
                 objects.tool.Visible = show and self.options.tool;
                 objects.tool.Font = self.options.font;
@@ -532,6 +524,16 @@ local espLibrary = {
                 objects.tool.Color = color or self.options.toolColor;
                 objects.tool.Text = tostring(tool);
                 objects.tool.Position = round(position + vector2New(size.X * 0.5, size.Y + 1));
+  
+                local Distance_Offset = self.options.tool and 13 or 2
+
+                objects.bottom.Visible = show and self.options.distance;
+                objects.bottom.Font = self.options.font;
+                objects.bottom.Size = self.options.fontSize;
+                objects.bottom.Transparency = self.options.distanceTransparency;
+                objects.bottom.Color = color or self.options.distanceColor;
+                objects.bottom.Text = tostring(round(distance)) .. self.options.distanceSuffix;
+                objects.bottom.Position = round(position + vector2New(size.X * 0.5, size.Y + Distance_Offset));
   
                 objects.box.Visible = show and self.options.boxes;
                 objects.box.Color = color or self.options.boxesColor;
