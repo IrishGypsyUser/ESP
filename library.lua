@@ -25,6 +25,8 @@ local espLibrary = {
         visibleOnly = false,
         teamCheck = false,
         teamColor = false,
+        useCustomTeamColor = false,
+        customteamColor = Color3.new(1,1,1),
         fillColor = nil,
         whitelistColor = Color3.new(1, 0, 0),
         outOfViewArrows = true,
@@ -417,6 +419,10 @@ local espLibrary = {
                 local canShow, enabled = onScreen and (size and position), self.options.enabled;
                 local team, teamColor = self.getTeam(player);
                 local color = self.options.teamColor and teamColor or nil;
+
+                if self.options.useCustomTeamColor and self.options.teamColor then
+                    color = self.options.customteamColor
+                end
   
                 if (self.options.fillColor ~= nil) then
                     color = self.options.fillColor;
