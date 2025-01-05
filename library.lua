@@ -60,6 +60,9 @@ local espLibrary = {
         distanceTransparency = 1,
         distanceSuffix = " Studs",
         distanceColor = Color3.new(1, 1, 1),
+        tool = false,
+        toolTransparency = 1,
+        toolColor = Color3.new(1,1,1),
         tracers = false,
         tracerTransparency = 1,
         tracerColor = Color3.new(1, 1, 1),
@@ -90,6 +93,7 @@ local espLibrary = {
   local find = table.find;
   local insert = table.insert;
   local findFirstChild = game.FindFirstChild;
+  local findFirstChildOfClass = game.FindFirstChildOfClass;
   local getChildren = game.GetChildren;
   local getDescendants = game.GetDescendants;
   local isA = workspace.IsA;
@@ -156,6 +160,11 @@ local espLibrary = {
   function espLibrary.getCharacter(player)
     local character = player.Character;
     return character, character and findFirstChild(character, "HumanoidRootPart");
+  end
+
+  function espLibrary.getTool(player)
+    local character = player.Character;
+    return findFirstChildOfClass(character, "Tool") ~= nil and tostring(findFirstChildOfClass(character, "Tool")) or findFirstChildOfClass(character, "Tool") == nil and "None"
   end
   
   function espLibrary.getBoundingBox(character, torso)
@@ -245,12 +254,19 @@ local espLibrary = {
             Thickness = 1,
         }),
         bottom = create("Text", {
-          Center = true,
-          Size = 13,
-          Outline = true,
-          OutlineColor = color3New(),
-          Font = 2,
-      }),
+            Center = true,
+            Size = 13,
+            Outline = true,
+            OutlineColor = color3New(),
+            Font = 2,
+        }),
+        tool = create("Text", {
+            Center = true,
+            Size = 13,
+            Outline = true,
+            OutlineColor = color3New(),
+            Font = 2,
+        }),
         top = create("Text", {
             Center = true,
             Size = 13,
@@ -419,6 +435,7 @@ local espLibrary = {
                 local canShow, enabled = onScreen and (size and position), self.options.enabled;
                 local team, teamColor = self.getTeam(player);
                 local color = self.options.teamColor and teamColor or nil;
+                local tool = self.getTool(player)
 
                 if self.options.useCustomTeamColor and self.options.teamColor then
                     color = self.options.customteamColor
@@ -504,9 +521,17 @@ local espLibrary = {
                 objects.bottom.Font = self.options.font;
                 objects.bottom.Size = self.options.fontSize;
                 objects.bottom.Transparency = self.options.distanceTransparency;
-                objects.bottom.Color = color or self.options.nameColor;
+                objects.bottom.Color = color or self.options.distanceColor;
                 objects.bottom.Text = tostring(round(distance)) .. self.options.distanceSuffix;
                 objects.bottom.Position = round(position + vector2New(size.X * 0.5, size.Y + 1));
+
+                objects.tool.Visible = show and self.options.tool;
+                objects.tool.Font = self.options.font;
+                objects.tool.Size = self.options.fontSize;
+                objects.tool.Transparency = self.options.toolTransparency;
+                objects.tool.Color = color or self.options.toolColor;
+                objects.tool.Text = tostring(tool);
+                objects.tool.Position = round(position + vector2New(size.X * 0.5, size.Y + 1));
   
                 objects.box.Visible = show and self.options.boxes;
                 objects.box.Color = color or self.options.boxesColor;
