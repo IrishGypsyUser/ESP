@@ -430,7 +430,7 @@ local espLibrary = {
             local character, torso = self.getCharacter(player);
   
             if (character and torso) then
-                local onScreen, size, position, torsoPosition = self.getBoxData(torso.Position, Vector3.new(5, 6));
+                local onScreen, size, position, torsoPosition = self.getBoxData(torso.Position, Vector3.new(5, 6.5));
                 local distance = (currentCamera.CFrame.Position - torso.Position).Magnitude;
                 local canShow, enabled = onScreen and (size and position), self.options.enabled;
                 local team, teamColor = self.getTeam(player);
@@ -661,5 +661,5 @@ local espLibrary = {
         end
     end);
   end
-  
+
   return espLibrary;
