@@ -595,6 +595,10 @@ local espLibrary = {
                 local canShow = self.options.enabled and self.options.chams;
                 local team, teamColor = self.getTeam(player);
                 local color = self.options.teamColor and teamColor or nil;
+
+                if self.options.useCustomTeamColor and self.options.teamColor then
+                    color = self.options.customteamColor
+                end
   
                 if (self.options.fillColor ~= nil) then
                     color = self.options.fillColor;
