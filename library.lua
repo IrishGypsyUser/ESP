@@ -1,10 +1,3 @@
--- main module
-Solara = string.match(getexecutorname(), "Solara") == "Solara" or string.match(getexecutorname(), "Xeno") == "Xeno" or getexecutorname() == string.match(getexecutorname(), "Zorara") == "Zorara";
-
-if Solara then
-    return
-end
-
 local espLibrary = {
     instances = {},
     espCache = {},
